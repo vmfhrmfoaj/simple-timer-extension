@@ -34,6 +34,7 @@ export default class TimerExtension extends Extension {
       // Timer Input Field            
       this.menuTimerInputEntry = new St.Entry({
          name: 'time',
+         text: '1:00:00',
          primary_icon : new St.Icon({ icon_name : 'media-playback-start-symbolic', icon_size : 24 }),
          can_focus : true,
          hint_text: _("Enter countdown time..."),
@@ -151,6 +152,9 @@ export default class TimerExtension extends Extension {
       // Check if timer is still running, and if it is -> reload the timer running view      
       if (this.timer.isRunning()) {
          this.timer.update();
+         this.timerShow();
+      } else {
+         this.timer.start(3600);
          this.timerShow();
       }
 
